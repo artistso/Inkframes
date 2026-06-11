@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.log
+.gradle/
+build/
+# Allow the gradle wrapper jar but ignore other jars
+!gradle/wrapper/gradle-wrapper.jar
+*.jar
+uploads/
+local.properties
+.idea/
+*.iml
+.DS_Store
+.gitconfig
