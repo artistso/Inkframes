@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.inkframe.core.model"
+    namespace = "com.inkframe.engine.gl"
     compileSdk = 34
     defaultConfig { minSdk = 26 }
     compileOptions {
@@ -16,6 +16,7 @@ android {
 
 dependencies {
     implementation(project(":core-common"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation(project(":core-model"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
     testImplementation("junit:junit:4.13.2")
 }
