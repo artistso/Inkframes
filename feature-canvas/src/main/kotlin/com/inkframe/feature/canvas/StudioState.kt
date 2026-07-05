@@ -245,7 +245,7 @@ class StudioState : ViewModel() {
     fun stop() { isPlaying = false }
 
     /** Milliseconds per frame at the project frame rate (drives the playback loop). */
-    val frameDurationMs: Long get() = PlaybackOps.frameDurationMs(project.canvas.fps)
+    val frameDurationMs: Long get() = PlaybackOps.frameDurationMs(project.canvas.fps).toLong()
 
     fun advancePlayback() {
         val (next, stillPlaying) = PlaybackOps.nextFrame(currentFrame, scene.playbackRange, scene.loop)

@@ -56,5 +56,10 @@ object TimelineOps {
         return scene.copy(layers=newLayers, frameCount=newFrameCount, playbackRange=newStart..newEnd)
     }
     fun extendExposure(layer: Layer, frame: Int, extra: Int): Layer = layer // hold is implicit via celAt; no-op structural
+
+    // Scene-level overload used by StudioState – inserts blank frames after current frame across scene
+    fun extendExposure(scene: Scene, frame: Int, extra: Int): Scene {
+        return insertFrames(scene, frame + 1, extra)
+    }
 }
 
