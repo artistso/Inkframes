@@ -41,6 +41,7 @@ enum class BlendMode(val displayName: String) {
     ADD("Add"),
     DARKEN("Darken"),
     LIGHTEN("Lighten"),
+    DIFFERENCE("Difference"),
     ERASE("Erase");
     companion object {
         fun fromOrdinalSafe(o: Int): BlendMode = values().getOrElse(o) { NORMAL }

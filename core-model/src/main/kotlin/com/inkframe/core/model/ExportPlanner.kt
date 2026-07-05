@@ -1,23 +1,28 @@
 package com.inkframe.core.model
 
 import com.inkframe.core.common.*
-import com.inkframe.core.common.JsonValue
-import com.inkframe.core.common.parseJson
 import kotlin.math.*
 
-// ExportPlanner
-data class ExportFrame(val frameIndex: Int, val durationMs: Int)
-data class ExportPlan(
-    val frames: List<ExportFrame>,
-    val fps: Int,
-    val widthPx: Int,
-    val heightPx: Int,
-    val loop: Boolean
-) {
-    val frameCount get() = frames.size
-    val totalDurationMs get() = frames.sumOf { it.durationMs }
-}
 object ExportPlanner {
+    data class ExportFrame(val frameIndex: Int, val durationMs: Int) {
+        val gifDelayCs: Int get() = msToCentisecondsRounded(durationMs)
+        // compatibility shims for older engine code expecting .frame
+        val frame: Int get() = frameIndex
+    }
+    data class ExportPlan(
+        val frames: List<ExportFrame>,
+        val fps: Int,
+        val widthPx: Int,
+        val heightPx: Int,
+        val loop: Boolean
+    ) {
+        val frameCount get() = frames.size
+        val totalDurationMs get() = frames.sumOf { it.durationMs }
+        // compatibility for older code that expects width/height without Px
+        val width: Int get() = widthPx
+        val height: Int get() = heightPx
+    }
+
     enum class Range { ALL, PLAYBACK }
     fun plan(
         scene: Scene,

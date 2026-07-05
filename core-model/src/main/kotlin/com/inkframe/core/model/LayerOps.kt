@@ -1,12 +1,12 @@
 package com.inkframe.core.model
 
 import com.inkframe.core.common.*
-import com.inkframe.core.common.JsonValue
-import com.inkframe.core.common.parseJson
 import kotlin.math.*
 
 // LayerOps
 object LayerOps {
+    fun indexOf(scene: Scene, layerId: String): Int = scene.layers.indexOfFirst { it.id == layerId }
+
     fun moveUp(scene: Scene, layerId: String): Scene = move(scene, layerId, +1)
     fun moveDown(scene: Scene, layerId: String): Scene = move(scene, layerId, -1)
     private fun move(scene: Scene, id: String, delta: Int): Scene {
@@ -33,9 +33,23 @@ object LayerOps {
         val newIdx = idx.coerceAtMost(remaining.size-1).coerceAtLeast(0)
         return remaining[newIdx].id
     }
+    fun toggleVisible(scene: Scene, layerId: String): Scene {
+        return scene.copy(layers = scene.layers.map { if (it.id == layerId) it.copy(visible = !it.visible) else it })
+    }
+    fun toggleLocked(scene: Scene, layerId: String): Scene {
+        return scene.copy(layers = scene.layers.map { if (it.id == layerId) it.copy(locked = !it.locked) else it })
+    }
+    fun setOpacity(scene: Scene, layerId: String, o: Float): Scene {
+        val op = o.coerceIn(0f,1f)
+        return scene.copy(layers = scene.layers.map { if (it.id == layerId) it.copy(opacity = op) else it })
+    }
+    fun setBlendMode(scene: Scene, layerId: String, mode: BlendMode): Scene {
+        return scene.copy(layers = scene.layers.map { if (it.id == layerId) it.copy(blendMode = mode) else it })
+    }
+
+    // helper overloads used internally by UI that work on a single Layer
     fun toggleVisible(layer: Layer) = layer.copy(visible = !layer.visible)
     fun toggleLocked(layer: Layer) = layer.copy(locked = !layer.locked)
     fun setOpacity(layer: Layer, o: Float) = layer.copy(opacity = o.coerceIn(0f,1f))
     fun setBlendMode(layer: Layer, mode: BlendMode) = layer.copy(blendMode=mode)
 }
-
