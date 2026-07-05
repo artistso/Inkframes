@@ -217,7 +217,9 @@ class StudioState : ViewModel() {
             tintStrength = tintStrength,
         )
 
-    fun setBusy(busy: Boolean) { isBusy = busy }
+    // fun setBusy removed to avoid JVM signature clash with isBusy setter
+    // use isBusy = … internally (private set remains for encapsulation – exposing via internal function if needed)
+    internal fun setBusyState(busy: Boolean) { isBusy = busy }
 
     /**
      * Replaces the in-memory document after a successful load. Resets the editing context
