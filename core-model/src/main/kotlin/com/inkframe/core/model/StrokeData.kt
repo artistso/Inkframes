@@ -16,3 +16,5 @@ data class StrokeData(
     val brushId: String = "ink",
     val color: RgbaColor = RgbaColor.BLACK
 )
+
+typealias StrokePoint = StrokeNode

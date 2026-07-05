@@ -22,10 +22,15 @@ data class CelTransform(
     val scaleY: Float = 1f
 )
 
+data class VectorData(
+    val strokes: List<StrokeData> = emptyList()
+)
+
 data class Cel(
     val id: String = "cel-${System.nanoTime()}",
     val surfaceId: Long,
-    val transform: CelTransform = CelTransform()
+    val transform: CelTransform = CelTransform(),
+    val vectorData: VectorData = VectorData()
 )
 
 enum class BlendMode(val displayName: String) {
@@ -73,7 +78,7 @@ data class Scene(
 }
 
 data class Project(
-    val id: String,
+    val id: String = "proj-${java.util.UUID.randomUUID()}",
     val name: String,
     val canvas: CanvasSpec,
     val scenes: List<Scene> = emptyList(),

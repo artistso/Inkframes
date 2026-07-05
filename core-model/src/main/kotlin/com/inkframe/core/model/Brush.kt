@@ -22,7 +22,10 @@ data class Brush(
     val pressureToSize: Boolean = true,
     val pressureToOpacity: Boolean = true,
     val buildUp: Boolean = false,
-    val glowTrail: Boolean = false
+    val glowTrail: Boolean = false,
+    val vectorMagnet: Float = 0f,
+    val postCorrection: Float = 0f,
+    val smartShaping: Boolean = false
 ) {
     fun diameterForPressure(p: Float): Float {
         val pp = p.coerceIn(0f,1f)

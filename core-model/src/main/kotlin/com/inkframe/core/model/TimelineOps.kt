@@ -7,6 +7,7 @@ import kotlin.math.*
 
 // TimelineOps
 object TimelineOps {
+    fun explicitCel(layer: Layer, frame: Int): Cel? = layer.cels[frame]
     fun clearCel(layer: Layer, frame: Int): Layer {
         val newCels = layer.cels.toMutableMap(); newCels.remove(frame); return layer.copy(cels=newCels)
     }
