@@ -25,6 +25,9 @@ data class RgbaColor(val r: Float, val g: Float, val b: Float, val a: Float = 1f
         val RED = RgbaColor(1f,0f,0f,1f)
         val GREEN = RgbaColor(0f,1f,0f,1f)
         val BLUE = RgbaColor(0f,0f,1f,1f)
+        val CYAN = RgbaColor(0f,1f,1f,1f)
+        val YELLOW = RgbaColor(1f,1f,0f,1f)
+        val MAGENTA = RgbaColor(1f,0f,1f,1f)
         fun fromArgb(argb: Int): RgbaColor {
             val a = ((argb ushr 24) and 0xFF)/255f
             val r = ((argb ushr 16) and 0xFF)/255f

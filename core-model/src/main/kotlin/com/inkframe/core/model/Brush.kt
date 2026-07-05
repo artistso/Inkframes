@@ -6,7 +6,7 @@ import com.inkframe.core.common.parseJson
 import kotlin.math.*
 
 // Brush
-enum class BrushKind { INK, ROUND, AIRBRUSH }
+enum class BrushKind { INK, ROUND, AIRBRUSH, ERASER }
 data class Brush(
     val id: String,
     val name: String,
@@ -21,7 +21,8 @@ data class Brush(
     val stabilization: Float = 0f,
     val pressureToSize: Boolean = true,
     val pressureToOpacity: Boolean = true,
-    val buildUp: Boolean = false
+    val buildUp: Boolean = false,
+    val glowTrail: Boolean = false
 ) {
     fun diameterForPressure(p: Float): Float {
         val pp = p.coerceIn(0f,1f)
