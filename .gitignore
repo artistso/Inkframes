@@ -3,9 +3,9 @@ dist/
 *.log
 .gradle/
 build/
-# Allow the gradle wrapper jar but ignore other jars
-!gradle/wrapper/gradle-wrapper.jar
+# Ignore jars except gradle wrapper
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 uploads/
 local.properties
 .idea/
