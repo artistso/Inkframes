@@ -1,7 +1,5 @@
 package com.inkframe.core.common
 
-import android.graphics.Bitmap
-
 /**
  * Scanline fill algorithm for flood-filling regions.
  */
